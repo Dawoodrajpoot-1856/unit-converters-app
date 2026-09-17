@@ -196,7 +196,7 @@ export default function ConverterClient({ slug }: ConverterClientProps) {
             {rightCategories.map((cat, idx) => (
               <Link
                 key={idx}
-                href={`/converter/${cat.slug}`}
+                href={`/converters/${cat.slug}`}
                 className="w-full flex items-center justify-between bg-neutral-900 text-white font-medium py-3.5 px-5 rounded-2xl transition-all duration-200 hover:bg-neutral-800 text-sm shadow-sm"
               >
                 <span>{cat.name}</span>

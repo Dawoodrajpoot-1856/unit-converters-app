@@ -1,5 +1,5 @@
-import ConverterClient from "@/components/Home/ConverterClient"; // Check karein ConverterClient kahan hai
-import { conversionData } from "@/utils/Converter"; // Agar file ka naam converters.ts hai toh yahan "@/utils/converters" karein!
+import ConverterClient from "@/components/Home/ConverterClient"; 
+import { conversionData } from "@/utils/Converter"; 
 import { notFound } from "next/navigation";
 
 export interface PageProps {

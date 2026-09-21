@@ -17,7 +17,6 @@ export default function ConverterClient({ slug }: ConverterClientProps) {
 
   const category = conversionData[cleanSlug];
 
-  // 🛑 notFound() ko call mat karein! Agar slug galat ho toh yeh friendly error dikhaye:
   if (!category) {
     return (
       <div className="min-h-screen bg-neutral-50 flex flex-col items-center justify-center p-4">
@@ -43,7 +42,6 @@ export default function ConverterClient({ slug }: ConverterClientProps) {
     );
   }
 
-  // Agar mil gaya toh regular component render hoga
   const [fromUnit, setFromUnit] = useState<Unit>(category.units[0]);
   const [toUnit, setToUnit] = useState<Unit>(
     category.units[1] || category.units[0],
@@ -64,11 +62,6 @@ export default function ConverterClient({ slug }: ConverterClientProps) {
     inputValue,
   );
 
-  const leftCategories = Object.keys(conversionData).map((key) => ({
-    name: conversionData[key].title || key,
-    slug: key.toLowerCase(),
-  }));
-
   const rightCategories = [
     { name: "Engineering & Mechanics", slug: "mechanics" },
     { name: "Thermal & Heat", slug: "thermal" },
@@ -82,28 +75,8 @@ export default function ConverterClient({ slug }: ConverterClientProps) {
   return (
     <div className="min-h-screen bg-neutral-50 p-4 md:p-8">
       <div className="max-w-7xl mx-auto grid grid-cols-1 lg:grid-cols-12 gap-6 items-start">
-        {/* LEFT SIDEBAR */}
-        <div className="lg:col-span-2 bg-white p-3 rounded-3xl shadow-sm border border-neutral-200 max-h-[80vh] overflow-y-auto space-y-1">
-          {leftCategories.map((cat) => {
-            const isActive = cat.slug === cleanSlug;
-            return (
-              <Link
-                key={cat.slug}
-                href={`/converter/${cat.slug}`}
-                className={`block w-full text-left px-4 py-2.5 rounded-xl text-sm font-medium transition-all ${
-                  isActive
-                    ? "bg-black text-white font-bold shadow-sm"
-                    : "bg-white text-neutral-700 hover:bg-neutral-100"
-                }`}
-              >
-                {cat.name}
-              </Link>
-            );
-          })}
-        </div>
-
-        {/* CENTER BOX */}
-        <div className="lg:col-span-7 bg-white p-6 md:p-8 rounded-3xl shadow-sm border border-neutral-200">
+        {/* CENTER BOX (Expanded Width) */}
+        <div className="lg:col-span-9 bg-white p-6 md:p-8 rounded-3xl shadow-sm border border-neutral-200">
           <h1 className="text-3xl md:text-4xl font-extrabold text-neutral-900 mb-6 capitalize">
             {category.title} Converter
           </h1>
